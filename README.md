@@ -61,7 +61,7 @@ The International Skin Imaging Collaboration: Melanoma Project is an academia an
 
 ## Results
 
-## DCGAN
+### DCGAN
 
 ![skin_lesions_700_twick](https://user-images.githubusercontent.com/48655676/110391353-a1d4d980-8067-11eb-9eca-4f458fffd203.png)
 
