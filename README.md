@@ -10,7 +10,7 @@ For this project we aim use generative models in order to synthetize medical ima
 
 ### DCGAN
 
-A DCGAN is a specific flavor of GAN dedicated to image generation. The architecture consists on a _Generator_ and a _Discrimination_ built upon 5 2d convolutional layers. 
+A DCGAN is a specific flavor of GAN dedicated to image generation. The architecture consists on a _Generator_ and a _Discriminator_ built upon 5 2d convolutional layers. 
 
 
 ![alt text](https://www.researchgate.net/publication/331282441/figure/download/fig3/AS:729118295478273@1550846756282/Deep-convolutional-generative-adversarial-networks-DCGAN-for-generative-model-of-BF-NSP.png)
@@ -26,13 +26,13 @@ python3 image_generation.py input.yaml
 ```
 ### Parameters
 
-Parameters and input/output path ara passed through a _.yaml_ file. An example of all flags is stated below:
+Parameters and input/output patha are passed through a _.yaml_ file. An example of all flags is stated below:
 
 ```
 arch: 'SNGAN'
 
 path: '/home/name/path/to/images/'
-out: '/home/name/path/to/images/or/not'
+out: '/home/name/path/to/output/images'
 run: 'name'
 seed: 42
 n_gpu: 0
