@@ -49,8 +49,6 @@ loader_workers: 2
 number_channels: 3
 gen_feature_maps: 64
 dis_feature_maps: 64
-
-
 ```
 
 ## Data
