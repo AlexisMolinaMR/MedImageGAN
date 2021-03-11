@@ -26,7 +26,7 @@ python3 image_generation.py input.yaml
 ```
 ### Parameters
 
-Parameters and input/output patha are passed through a _.yaml_ file. An example of all flags is stated below:
+Parameters and input/output paths are passed through a _.yaml_ file. An example of all flags is stated below:
 
 ```
 arch: 'SNGAN'
