@@ -7,7 +7,7 @@ import torch.optim as optim
 
 from data.image_preprocessing import dataLoader
 from utils.utils import to_gpu, loss_plot, image_grid
-from utils.metrics import get_statistics, calculate_frechet_distance, get_fid_score, get_inception_score, get_inception_and_fid_score
+from utils.metrics import compute_ssim
 from models.dcgan import weights_init, Generator, Discriminator, Discriminator_SN, training_loop
 
 
@@ -76,8 +76,7 @@ def main():
     image_grid(dataloader=dataloader, img_list=img_list,
                device=device, out=params['out'] + params['run'] + '_')
 
-#    print(get_inception_and_fid_score(images=img_list_only, device=device, fid_cache=params['path'] + 'UDA-1/all_images.npz', is_splits=10,
-#                                      batch_size = 50, verbose = False))
+    compute_metrics(real=next(iter(dataloader)), fakes=img_list_only, out=params['out'])
 
 
 if __name__ == "__main__":

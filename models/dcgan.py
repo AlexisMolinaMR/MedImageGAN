@@ -169,8 +169,8 @@ def training_loop(num_epochs, dataloader, netG, netD, device, criterion, nz, opt
                     fake = netG(fixed_noise).detach().cpu()
 
                 img_list.append(vutils.make_grid(fake, padding=2, normalize=True))
-                img_list_only.append(np.array(fake[-1]))
+                img_list_only.append(fake)
 
             iters += 1
 
-    return G_losses, D_losses, img_list, np.asarray(img_list_only)
+    return G_losses, D_losses, img_list, img_list_only
