@@ -15,18 +15,18 @@ def compute_metrics(real, fakes, out):
     ms_gmsd = MS_GMSD()
     mdsi = MDSI()
 
-    if len(real_batch[0]) > len((img_list_only[-1]):
-        thres=len(real_batch[0])
+    if len(real[0]) > len((fakes[-1]):
+        thres=len(real[0])
 
-    elif len(real_batch[0]) < len((img_list_only[-1]):
-        thres=len(img_list_only[-1])
+    elif len(real[0]) < len((fakes[-1]):
+        thres=len(fakes[-1])
 
     else:
-        thres=len(img_list_only[-1])
+        thres=len(fakes[-1])
 
     for i in range(0, thres-1)):
-        f=torch.reshape(img_list_only[-1][i], (-1, 3, 64, 64))
-        r=torch.reshape(real_batch[0][i], (-1, 3, 64, 64))
+        f=torch.reshape(fakes[-1][i], (-1, 3, 64, 64))
+        r=torch.reshape(real[0][i], (-1, 3, 64, 64))
         r_norm=(r - r.min()) / (r.max() - r.min())
         f_norm=(f - f.min()) / (f.max() - f.min())
 
