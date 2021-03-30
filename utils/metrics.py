@@ -29,5 +29,7 @@ def compute_metrics(real, fakes, out):
         ms += ms_gmsd(r_norm, f_norm)
         md += mdsi(r_norm, f_norm)
 
-    print('PSNR: {}, SSIM: {}, HAAR: {}, MSGMSD: {}, MDSI: {}'.format(
-        p/len(p), s/(len(s)), h/len(h), ms/len(ms), md/len(md)), file=out + 'metrics_report.out')
+    with open(out + 'metrics_report.out') as mr_out:
+
+        print('PSNR: {}, SSIM: {}, HAAR: {}, MSGMSD: {}, MDSI: {}'.format(
+                p/(len(p)), s/(len(s)), h/(len(h)), ms/(len(ms)), md/(len(md)), file=mr_out)
