@@ -4,7 +4,7 @@
 
 This repository contains an implementation of a DCGAN and a SNGAN for image generation. More precisely it is dedicated to artificial image synthesis in the context of medical imaging data. 
 
-For this project we aim use generative models in order to synthetize medical images of a given class. This task is relevant in the field of medical imaging since the data is often scarce and underrepresented for some specific diagnostics which difficults the development of classification systems. To deal with this imbalance, artificial image generation offers a cheaper and faster solution that real generation through standard procedures.
+For this project we aim use generative models in order to synthetize medical images of a given class. This task is relevant in the field of medical imaging since the data is often scarce and underrepresented for some specific diagnostics which difficults the development of classification systems. To deal with this imbalance, artificial image generation offers a cheaper and faster solution than real generation through standard procedures.
 
 ## Implementation
 
@@ -17,7 +17,46 @@ A DCGAN is a specific flavor of GAN dedicated to image generation. The architect
 
 ### SNGAN
 
-This gan is identical to DCGAN but implements _Spectral Normalization_ to deal with the issue of exploding gradient in the _Discriminator_.
+This gan is identical to DCGAN but implements _Spectral Normalization_ to deal with the issue of exploding gradients in the _Discriminator_.
+
+### 256x256 image generation
+
+For our final goal, specific class balancing, we needed to generate images of the proper size. The original DCGAN implementation creates images of size 64x64, but our classificator, which is built using an EfficientNet works with input size of 256x256. Thus, in this repository we modified the original architecture and for both DCGAN and SNGAN for generating bigger images.
+
+### Metrics
+
+Since we don't have any medical expert to assess the quality of the generated images, we have implemented several metrics to measure traits of our output pictures.
+
+#### Peak Signal-to-Noise Ratio (PSNR)
+
+This metric is used to measure the quality of a given image (noise), which underwent some transformation, compared to the its original (signal). In our case, the original picture is the real batch of images feeded into our network and the noise is represented by a given generated image.
+
+#### Structural Similarity (SSIM)
+
+SSIM aims to predict the percieved the quality of a digital image. It is a perception based model that computes the degradation in an image comparison as in the precived change in the structural information. This metric captures the perceptual changes in traits such as luminance and contrast.
+
+#### Multi-Scale Gradient Magnitude Similarity Deviation (MS GMSD)
+
+MS-GMSD works on a similar version as SSIM, but it also accounts for different scales for computing luminance and incorporates chromatic distorsion support.
+
+#### Mean Deviation Similarity Index (MSDI)
+
+MSDI computes the joint similarity map of two chromatic channels through standard deviation pooling, which serves as an estimate of color changes. 
+
+#### Haar Perceptural Similarity Index (HaarPSI)
+
+HaarPSI works on the Haar wavelet decomposition and assesses local similarities between two images and the relative importance of those local regions. This metric is the current state-of-the-art as for the agreement with human opinion on image quality. 
+
+#### Bar of measures
+
+Measure | Bar | 
+:------: | :------:|
+PSNR   | Context dependant, generally the higher the better.      | 
+SSIM   |  Ranges from 0 to 1, being 1 the best value.     | 
+MS-GMSD |  Ranges from 0 to 1, being 1 the best value.    |  
+MSDI   |   Ranges from 0 to 1, being 1 the best value.    |
+HaarPSI |   Ranges from 0 to 1, being 1 the best value.   |
+
 
 ## Execution
 
