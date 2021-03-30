@@ -214,7 +214,7 @@ class Discriminator_SN_256(nn.Module):
         return self.main(input)
 
 
-def training_loop(num_epochs, dataloader, netG, netD, device, criterion, nz, optimizerG, optimizerD, fixed_noise):
+def training_loop(num_epochs, dataloader, netG, netD, device, criterion, nz, optimizerG, optimizerD, fixed_noise, out):
 
     img_list = []
     img_list_only = []
@@ -282,6 +282,9 @@ def training_loop(num_epochs, dataloader, netG, netD, device, criterion, nz, opt
 
                 img_list.append(vutils.make_grid(fake, padding=2, normalize=True))
                 img_list_only.append(fake)
+
+                for j in range(len(fake)-1):
+                    save_image(fake[j], out + str(epoch) + '_' + str(j) + '_img.png')
 
             iters += 1
 

@@ -100,7 +100,7 @@ def main():
     G_losses, D_losses, img_list, img_list_only = training_loop(num_epochs=params['num_epochs'], dataloader=dataloader,
                                                                 netG=netG, netD=netD, device=device, criterion=criterion, nz=params[
                                                                     'latent_vector'],
-                                                                optimizerG=optimizerG, optimizerD=optimizerD, fixed_noise=fixed_noise)
+                                                                optimizerG=optimizerG, optimizerD=optimizerD, fixed_noise=fixed_noise, out=params['out'])
 
     loss_plot(G_losses=G_losses, D_losses=D_losses, out=params['out'] + params['run'] + '_')
 
