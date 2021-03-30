@@ -8,7 +8,7 @@ import torch.optim as optim
 from data.image_preprocessing import dataLoader
 from utils.utils import to_gpu, loss_plot, image_grid
 from utils.metrics import compute_ssim
-from models.dcgan import weights_init, Generator, Discriminator, Discriminator_SN, training_loop
+from models.dcgan import weights_init, Generator, Generator_256, Discriminator, Discriminator_256, Discriminator_SN_256, Discriminator_SN, training_loop
 
 
 def parseyaml():
@@ -41,19 +41,50 @@ def main():
 
     if params['arch'] == 'DCGAN':
 
-        netD = Discriminator(params['n_gpu'], nc=params['number_channels'],
-                             ndf=params['dis_feature_maps']).to(device)
+        if params['image_size'] == 64:
+
+            netG = Generator(ngpu=params['n_gpu'], nz=params['latent_vector'],
+                             ngf=params['gen_feature_maps'], nc=params['number_channels']).to(device)
+
+            netD = Discriminator(params['n_gpu'], nc=params['number_channels'],
+                                 ndf=params['dis_feature_maps']).to(device)
+
+        elif params['image_size'] == 256:
+
+            netG = Generator_256(ngpu=params['n_gpu'], nz=params['latent_vector'],
+                                 ngf=params['gen_feature_maps'], nc=params['number_channels']).to(device)
+
+            netD = Discriminator_256(params['n_gpu'], nc=params['number_channels'],
+                                     ndf=params['dis_feature_maps']).to(device)
 
     elif params['arch'] == 'SNGAN':
 
-        netD = Discriminator_SN(params['n_gpu'], nc=params['number_channels'],
-                                ndf=params['dis_feature_maps']).to(device)
+        if params['image_size'] == 64:
+
+            netG = Generator(ngpu=params['n_gpu'], nz=params['latent_vector'],
+                             ngf=params['gen_feature_maps'], nc=params['number_channels']).to(device)
+
+            netD = Discriminator_SN(params['n_gpu'], nc=params['number_channels'],
+                                    ndf=params['dis_feature_maps']).to(device)
+
+        elif params['image_size'] == 256:
+
+            netG = Generator_256(ngpu=params['n_gpu'], nz=params['latent_vector'],
+                                 ngf=params['gen_feature_maps'], nc=params['number_channels']).to(device)
+
+            netD = Discriminator_SN_256(params['n_gpu'], nc=params['number_channels'],
+                                        ndf=params['dis_feature_maps']).to(device)
+
+    if (device.type == 'cuda') and (params['n_gpu'] > 1):
+        netG = nn.DataParallel(netG, list(range(params['n_gpu'])))
 
     if (device.type == 'cuda') and (params['n_gpu'] > 1):
         netD = nn.DataParallel(netD, list(range(params['n_gpu'])))
 
+    netG.apply(weights_init)
     netD.apply(weights_init)
 
+    print(netG)
     print(netD)
 
     criterion = nn.BCELoss()
