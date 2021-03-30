@@ -7,7 +7,7 @@ import torch.optim as optim
 
 from data.image_preprocessing import dataLoader
 from utils.utils import to_gpu, loss_plot, image_grid
-from utils.metrics import compute_ssim
+from utils.metrics import compute_metrics
 from models.dcgan import weights_init, Generator, Generator_256, Discriminator, Discriminator_256, Discriminator_SN_256, Discriminator_SN, training_loop
 
 
