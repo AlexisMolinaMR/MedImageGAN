@@ -8,6 +8,13 @@ def compute_metrics(real, fakes, out):
 
     p, s, h, ms, md = 0, 0, 0, 0, 0
 
+    ssim = SSIM().cpu()
+    psnr = PSNR()
+    haar = HaarPSI()
+    msssim = MS_SSIM()
+    ms_gmsd = MS_GMSD()
+    mdsi = MDSI()
+
     if len(real_batch[0]) > len((img_list_only[-1]):
         thres=len(real_batch[0])
 
@@ -32,4 +39,6 @@ def compute_metrics(real, fakes, out):
     with open(out + 'metrics_report.out') as mr_out:
 
         print('PSNR: {}, SSIM: {}, HAAR: {}, MSGMSD: {}, MDSI: {}'.format(
-                p/(len(p)), s/(len(s)), h/(len(h)), ms/(len(ms)), md/(len(md)), file=mr_out)
+                p/(len(p)), s/(len(s)), h/(len(h)), ms/(len(ms)), md/(len(md)), file=mr_out))
+
+    return 0
