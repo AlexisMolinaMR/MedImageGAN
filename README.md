@@ -2,7 +2,7 @@
 
 ## Description
 
-This repository contains an implementation of a DCGAN and a SNGAN for image generation. More precisely it is dedicated to artificial image synthesis in the context of medical imaging data. 
+This repository contains an implementation of a DCGAN and a SNGAN for image generation. More precisely, it is dedicated to artificial image synthesis in the context of medical imaging data. 
 
 For this project we aim use generative models in order to synthetize medical images of a given class. This task is relevant in the field of medical imaging since the data is often scarce and underrepresented for some specific diagnostics which difficults the development of classification systems. To deal with this imbalance, artificial image generation offers a cheaper and faster solution than real generation through standard procedures.
 
