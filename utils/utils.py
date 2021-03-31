@@ -1,8 +1,7 @@
+import torch
+
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.linalg import sqrtm
-
-import torch
 import torchvision.utils as vutils
 
 

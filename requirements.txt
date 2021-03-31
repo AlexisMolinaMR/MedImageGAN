@@ -1,0 +1,10 @@
+# requirements
+
+torch==1.7.0+cpu 
+torchvision==0.8.1+cpu
+torch==1.7.0+cu101
+torchvision==0.8.1+cu101
+PyYAML==5.4.1
+numpy==1.20.2
+piqa==1.1.3
+

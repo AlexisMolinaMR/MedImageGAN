@@ -24,11 +24,11 @@ def compute_metrics(real, fakes, out):
     else:
         thres = len(fakes[-1])
 
-    for i in range(0, thres-1)):
-        f=torch.reshape(fakes[-1][i], (-1, 3, 64, 64))
-        r=torch.reshape(real[0][i], (-1, 3, 64, 64))
-        r_norm=(r - r.min()) / (r.max() - r.min())
-        f_norm=(f - f.min()) / (f.max() - f.min())
+    for i in range(0, thres-1):
+        f = torch.reshape(fakes[-1][i], (-1, 3, 64, 64))
+        r = torch.reshape(real[0][i], (-1, 3, 64, 64))
+        r_norm = (r - r.min()) / (r.max() - r.min())
+        f_norm = (f - f.min()) / (f.max() - f.min())
 
         p.append(psnr(r_norm, f_norm))
         s.append(ssim(r_norm, f_norm))
@@ -39,6 +39,6 @@ def compute_metrics(real, fakes, out):
     with open(out + 'metrics_report.out') as mr_out:
 
         print('PSNR: {}, SSIM: {}, HAAR: {}, MSGMSD: {}, MDSI: {}'.format(
-                sum(p)/(len(p)), sum(s)/(len(s)), sum(h)/(len(h)), sum(ms)/(len(ms)), sum(md)/(len(md)), file=mr_out))
+            sum(p)/(len(p)), sum(s)/(len(s)), sum(h)/(len(h)), sum(ms)/(len(ms)), sum(md)/(len(md)), file=mr_out))
 
     return 0

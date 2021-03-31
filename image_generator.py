@@ -8,7 +8,8 @@ import torch.optim as optim
 from data.image_preprocessing import dataLoader
 from utils.utils import to_gpu, loss_plot, image_grid
 from utils.metrics import compute_metrics
-from models.dcgan import weights_init, Generator, Generator_256, Discriminator, Discriminator_256, Discriminator_SN_256, Discriminator_SN, training_loop
+from models.dcgan import weights_init, Generator,  Generator_128, Generator_256
+from models.dcgan import Discriminator,  Discriminator_128, Discriminator_SN_128, Discriminator_256, Discriminator_SN_256, Discriminator_SN, training_loop
 
 
 def parseyaml():
@@ -49,6 +50,14 @@ def main():
             netD = Discriminator(params['n_gpu'], nc=params['number_channels'],
                                  ndf=params['dis_feature_maps']).to(device)
 
+        elif params['image_size'] == 128:
+
+            netG = Generator_128(ngpu=params['n_gpu'], nz=params['latent_vector'],
+                                 ngf=params['gen_feature_maps'], nc=params['number_channels']).to(device)
+
+            netD = Discriminator_128(params['n_gpu'], nc=params['number_channels'],
+                                     ndf=params['dis_feature_maps']).to(device)
+
         elif params['image_size'] == 256:
 
             netG = Generator_256(ngpu=params['n_gpu'], nz=params['latent_vector'],
@@ -66,6 +75,14 @@ def main():
 
             netD = Discriminator_SN(params['n_gpu'], nc=params['number_channels'],
                                     ndf=params['dis_feature_maps']).to(device)
+
+        elif params['image_size'] == 128:
+
+            netG = Generator_128(ngpu=params['n_gpu'], nz=params['latent_vector'],
+                                 ngf=params['gen_feature_maps'], nc=params['number_channels']).to(device)
+
+            netD = Discriminator_SN_128(params['n_gpu'], nc=params['number_channels'],
+                                        ndf=params['dis_feature_maps']).to(device)
 
         elif params['image_size'] == 256:
 
