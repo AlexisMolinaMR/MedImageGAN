@@ -19,9 +19,9 @@ A DCGAN is a specific flavor of GAN dedicated to image generation. The architect
 
 This gan is identical to DCGAN but implements _Spectral Normalization_ to deal with the issue of exploding gradients in the _Discriminator_.
 
-### 256x256 image generation
+### 128x128 & 256x256 image generation
 
-For our final goal, specific class balancing, we needed to generate images of the proper size. The original DCGAN implementation creates images of size 64x64, but our classificator, which is built using an EfficientNet works with input size of 256x256. Thus, in this repository we modified the original architecture and for both DCGAN and SNGAN for generating bigger images.
+For our final goal, specific class balancing, we needed to generate images of the proper size. The original DCGAN implementation creates images of size 64x64, but our classificator, which is built using an EfficientNet works with input size of 128x128. Furthermore we were interested in creating even bigger images, of 256x256, and assess the quality of those. Thus, in this repository we modified the original architecture and for both DCGAN and SNGAN for generating bigger images. 
 
 ### Metrics
 
@@ -100,7 +100,15 @@ The International Skin Imaging Collaboration: Melanoma Project is an academia an
 
 ### Experiments
 
+Training GANs is a hard task. From the strarting point of the raw implementation of the architecture util the generation of good quality images, that fullfil the purpose of the project, several add-ons have been implemented. For each one of them, we have compiled the obtained results and also elaborated on the given effect upon the network.
+
 #### Non-convergence issue
+
+#### Minumum input size
+
+Training GANs is costly in terms of computing resources, and with a limited amount of those, experimenting with different features of GANs proves to be a time consuming issue. In that sense, we wanted to assess the minimum input size of images that allowed for a proper training of the DCGAN.
+
+
 
 #### Batch size
 
