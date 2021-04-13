@@ -10,14 +10,14 @@ For this project we aim use generative models in order to synthetize medical ima
 
 ### DCGAN
 
-A DCGAN is a specific flavor of GAN dedicated to image generation. The architecture consists on a _Generator_ and a _Discriminator_ built upon four 2d convolutional layers. 
+A DCGAN is a specific flavor of GAN dedicated to image generation. The architecture consists on a _Generator_ and a _Discriminator_ built upon four 2d convolutional layers. It was first described by _Radford et. al._ in this [paper](https://arxiv.org/pdf/1511.06434.pdf). The _Discriminator_ in build out of strided convolutions, batch normalization layers and uses Leaky Relu activations. Originally, the input size of the images is 64 and it is already set to process color images (3x64x64). The _Generator_ differs from the _Discriminator_ in the convolutional layers, which are transposed. It has as an input a random vector sampled from a normal distribution which will be transformed by adversarial training into an RGB image of the selected shape.
 
 
 ![alt text](https://www.researchgate.net/publication/331282441/figure/download/fig3/AS:729118295478273@1550846756282/Deep-convolutional-generative-adversarial-networks-DCGAN-for-generative-model-of-BF-NSP.png)
 
 ### SNGAN
 
-This gan is identical to DCGAN but implements _Spectral Normalization_ to deal with the issue of exploding gradients in the _Discriminator_.
+This gan is identical to DCGAN but implements _Spectral Normalization_ to deal with the issue of exploding gradients in the _Discriminator_. This implementation will be explained later on with more detail.
 
 ### 128x128 & 256x256 image generation
 
@@ -25,7 +25,7 @@ For our final goal, specific class balancing, we needed to generate images of th
 
 ### Metrics
 
-Since we don't have any medical expert to assess the quality of the generated images, we have implemented several metrics to measure traits of our output pictures.
+Since lack from any medical expertise for assessing the quality of the generated images, we have implemented several metrics to measure traits of our output pictures.
 
 #### Peak Signal-to-Noise Ratio (PSNR)
 
@@ -39,9 +39,9 @@ SSIM aims to predict the percieved the quality of a digital image. It is a perce
 
 MS-GMSD works on a similar version as SSIM, but it also accounts for different scales for computing luminance and incorporates chromatic distorsion support.
 
-#### Mean Deviation Similarity Index (MSDI)
+#### Mean Deviation Similarity Index (MDSI)
 
-MSDI computes the joint similarity map of two chromatic channels through standard deviation pooling, which serves as an estimate of color changes. 
+MDSI computes the joint similarity map of two chromatic channels through standard deviation pooling, which serves as an estimate of color changes. 
 
 #### Haar Perceptural Similarity Index (HaarPSI)
 
@@ -54,7 +54,7 @@ Measure | Bar |
 PSNR   | Context dependant, generally the higher the better.      | 
 SSIM   |  Ranges from 0 to 1, being 1 the best value.     | 
 MS-GMSD |  Ranges from 0 to 1, being 1 the best value.    |  
-MSDI   |   Ranges from 0 to 1, being 1 the best value.    |
+MDSI   |   Ranges from 0 to inf, being 0 the best value.    |
 HaarPSI |   Ranges from 0 to 1, being 1 the best value.   |
 
 
@@ -109,18 +109,122 @@ Training GANs is a hard task. From the strarting point of the raw implementation
 Training GANs is costly in terms of computing resources, and with a limited amount of those, experimenting with different features of GANs proves to be a time consuming issue. In that sense, we wanted to assess the minimum input size of images that allowed for a proper training of the DCGAN.
 
 
+:inbox_tray: [ISIC-images-80.zip](https://drive.google.com/file/d/1cBhhZgU5ZwWq3_zsDc63A6sE3M0R4pH-/view?usp=sharing)
+
+:inbox_tray: [ISIC-images-160.zip](https://drive.google.com/file/d/1xOVIFNuVCtckeD725TBZKhY1pZNtfaFT/view?usp=sharing)
+
+:inbox_tray: [ISIC-images-240.zip](https://drive.google.com/file/d/1TVGzSzAetmIZMaOFchFCLm_EO65qyTOh/view?usp=sharing)
+
 
 #### Batch size
 
+For stabilizing the training and actually generating better images, lowering the batch size is one of the tweaks that helps out achiving that goal. For testing this hyperparametrization we tried 3 different batch sizes, starting from the original in the DCGAN paper: 128, 64 and 16.
+
+##### 128 size
+
+![loss_batch_128](https://user-images.githubusercontent.com/48655676/114517532-b85dea00-9c3e-11eb-9784-fd4cdbf1fb8d.png)
+
+![real_grid_128](https://user-images.githubusercontent.com/48655676/114517753-ee9b6980-9c3e-11eb-9028-35692da94688.png)
+
+Measure | Value | 
+:------: | :------:|
+PSNR   | 9.91      | 
+SSIM   |  0.04     | 
+MS-GMSD |  0.27    |  
+MDSI   |   0.58    |
+HaarPSI |   0.31   |
+
+##### 64 size
+
+![loss_batch_64](https://user-images.githubusercontent.com/48655676/114524646-b0557880-9c45-11eb-9ff0-91a4c34abe46.png)
+
+![grid_batch _64](https://user-images.githubusercontent.com/48655676/114524690-b8151d00-9c45-11eb-9878-dc665e20451c.png)
+
+Measure | Value | 
+:------: | :------:|
+PSNR   | 12.46     | 
+SSIM   |  0.23     | 
+MS-GMSD |  0.25    |  
+MDSI   |   0.49    |
+HaarPSI |   0.35   |
+
+##### 16 size
+
+![loss_batch_16](https://user-images.githubusercontent.com/48655676/114522935-1f31d200-9c44-11eb-9781-55f0b98932ea.png)
+
+![grid_batch _16](https://user-images.githubusercontent.com/48655676/114522947-21942c00-9c44-11eb-920f-d8670e815203.png)
+
+Measure | Value | 
+:------: | :------:|
+PSNR   | 12.76      | 
+SSIM   |  0.30     | 
+MS-GMSD |  0.25    |  
+MDSI   |   0.49    |
+HaarPSI |   0.37   |
+
+
 #### Training epochs
 
-#### Spectral normalization
+One appreciable feature of GAN training is the unique training mode they display. By judging the training by the loss values and plots one might be tempted to stop the training before the quality of images reached its best with the given architecture. In this experiment we wanted to asssess if the worst performing batch size could get better with more training epochs. 
+
+![longtrain](https://user-images.githubusercontent.com/48655676/114547222-72b11980-9c5e-11eb-85d5-95a5d7b8d0b8.png)
+
+![grid_longtrain](https://user-images.githubusercontent.com/48655676/114547228-75137380-9c5e-11eb-8c8d-22cdc3479350.png)
+
 
 #### Latent vector size
 
+##### Latent vector of size 128
+
+![loss_batch_16_lat_128](https://user-images.githubusercontent.com/48655676/114531912-9d927200-9c4c-11eb-94ac-84295e946f9b.png)
+
+![grid_batch_16_lat_128](https://user-images.githubusercontent.com/48655676/114531922-a1be8f80-9c4c-11eb-9ce7-d087da1d0c03.png)
+
+Measure | Value | 
+:------: | :------:|
+PSNR   | 11.89      | 
+SSIM   |  0.29     | 
+MS-GMSD |  0.27    |  
+MDSI   |   0.49    |
+HaarPSI |   0.32  |
+
+##### Latent vector of size 256
+
+![loss_batch_16_lat_256](https://user-images.githubusercontent.com/48655676/114536479-6bcfda00-9c51-11eb-9746-9fb05ae4349e.png)
+
+![grid_batch_16_lat_256](https://user-images.githubusercontent.com/48655676/114536612-8ace6c00-9c51-11eb-96e7-adcb7cd6d594.png)
+
+Measure | Value | 
+:------: | :------:|
+PSNR   | 10.82      | 
+SSIM   |  0.28     | 
+MS-GMSD |  0.28    |  
+MDSI   |   0.52    |
+HaarPSI |   0.31  |
+
 #### Two-time scale update
 
-#### Multi-Scale Gradient
+#### Label smoothing
+
+One of the most helpful modifications that was done into the implementation was label smoothing. This technique refers as to change the usual value of the classification labels, which tipically are assigned to 1 and 0, to another value close to the original. For instance, in this implementatation for the real images, orginally labellel as 1, a value of 0.9 was used. 
+
+Label smoothing can be used when the implementation is using a cross entropy loss function and the model applies the softmax function to comput the logit input vectors' its final probabilities. By reducing the value of the assigned label the _Discrimination_ gets 'less confident' since the assigned probabilities at the output layer will be lower in comparison with using the original label value.
+
+![loss_batch_16_lat_256_ls](https://user-images.githubusercontent.com/48655676/114546092-113c7b00-9c5d-11eb-9058-7ec224a9497c.png)
+
+![grid_batch_16_lat_256_ls](https://user-images.githubusercontent.com/48655676/114546101-14376b80-9c5d-11eb-86c8-fb9594144fa1.png)
+
+
+Measure | Value | 
+:------: | :------:|
+PSNR   | 12.92     | 
+SSIM   |  0.35     | 
+MS-GMSD |  0.29    |  
+MDSI   |   0.45    |
+HaarPSI |   0.39  |
+
+ 
+#### Spectral normalization
 
 
 ### DCGAN
