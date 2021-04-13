@@ -120,6 +120,8 @@ Training GANs is costly in terms of computing resources, and with a limited amou
 
 For stabilizing the training and actually generating better images, lowering the batch size is one of the tweaks that helps out achiving that goal. For testing this hyperparametrization we tried 3 different batch sizes, starting from the original in the DCGAN paper: 128, 64 and 16.
 
+Changing the batch size to a lower value was one of the experiments that enhanced the quality of images. We follow-up the subsequent experiments with a batch size of 16, which was best performing.
+
 ##### 128 size
 
 ![loss_batch_128](https://user-images.githubusercontent.com/48655676/114517532-b85dea00-9c3e-11eb-9784-fd4cdbf1fb8d.png)
@@ -167,12 +169,18 @@ HaarPSI |   0.37   |
 
 One appreciable feature of GAN training is the unique training mode they display. By judging the training by the loss values and plots one might be tempted to stop the training before the quality of images reached its best with the given architecture. In this experiment we wanted to asssess if the worst performing batch size could get better with more training epochs. 
 
+We observed that with longer training, that is with more epochs, the output of the worst performing GAN with batch size tweaking is able to output images that resemble the input images. Since with the proper parameters the GAN trained well with only 200 epochs we resumed the experimentation with that training length.
+
 ![longtrain](https://user-images.githubusercontent.com/48655676/114547222-72b11980-9c5e-11eb-85d5-95a5d7b8d0b8.png)
 
 ![grid_longtrain](https://user-images.githubusercontent.com/48655676/114547228-75137380-9c5e-11eb-8c8d-22cdc3479350.png)
 
 
 #### Latent vector size
+
+Is has been reported that increasing the input vector size has result in better generation of images. This may be caused be a bigger sampling space which gives better chances to the _Generator_ to construct a wider diversity of images and thus, a better chance to resemble the real input and fool the _Discriminator_.
+
+In our case, experimenting with this feature has not given better image quality but descreased the training time.
 
 ##### Latent vector of size 128
 
@@ -202,8 +210,6 @@ MS-GMSD |  0.28    |
 MDSI   |   0.52    |
 HaarPSI |   0.31  |
 
-#### Two-time scale update
-
 #### Label smoothing
 
 One of the most helpful modifications that was done into the implementation was label smoothing. This technique refers as to change the usual value of the classification labels, which tipically are assigned to 1 and 0, to another value close to the original. For instance, in this implementatation for the real images, orginally labellel as 1, a value of 0.9 was used. 
@@ -224,7 +230,38 @@ MDSI   |   0.45    |
 HaarPSI |   0.39  |
 
  
-#### Spectral normalization
+#### Spectral normalization 
+
+Spectral normalization is a weight regularization technique with is applied to the GAN's _Discriminator_ to solve the issue of exploding gradients. Is works stabilizing the training process of the _Discriminator_ through a rescaling the weights of the convolution layers using a norm (spectral norm) which is calculated using the power iteration method. The method is triggered right before the _forward()_ function call.
+
+Some works refer to DCGANs that implement spectral normalization as SNGANs, which is also done in this work. SNGAN with the best parameters and implementations described above was the one used for the image generation.
+
+![sn_loss](https://user-images.githubusercontent.com/48655676/114559833-6cc23500-9c6c-11eb-8acf-c797630a5d9c.png)
+
+![grid_fake_final](https://user-images.githubusercontent.com/48655676/114559846-6fbd2580-9c6c-11eb-92c3-fce9bd250704.png)
+
+Measure | Value | 
+:------: | :------:|
+PSNR   | 12.04     | 
+SSIM   |  0.35     | 
+MS-GMSD |  0.27    |  
+MDSI   |   0.46    |
+HaarPSI |   0.40  |
+
+#### Learning rate adjustment
+
+Having different learning rates for the _Generator_ and the _Discriminator_ helps the training. For instance, we left the learning rate of the _Generator_ as indicated on the DCGAN paper and inreased 10 and 100 fold the learning rate of the _Discriminator.
+
+##### 10 fold learning rate difference
+
+
+##### 100 fold difference
+
+
+
+
+### 128x128 image generation
+
 
 
 ### DCGAN
