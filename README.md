@@ -252,18 +252,54 @@ HaarPSI |   0.40  |
 
 Having different learning rates for the _Generator_ and the _Discriminator_ helps the training. For instance, we left the learning rate of the _Generator_ as indicated on the DCGAN paper and inreased 10 and 100 fold the learning rate of the _Discriminator.
 
+At first glance the performance did not improve much but we got a more stable training.
+
 ##### 10 fold learning rate difference
 
+![loss_lr_10](https://user-images.githubusercontent.com/48655676/114622494-5210b000-9cae-11eb-9051-bbcce37dd788.png)
+
+![grid_lr10](https://user-images.githubusercontent.com/48655676/114622499-54730a00-9cae-11eb-8239-e22366a67669.png)
+
+Measure | Value | 
+:------: | :------:|
+PSNR   | 12.05     | 
+SSIM   |  0.30     | 
+MS-GMSD |  0.27    |  
+MDSI   |   0.50    |
+HaarPSI |   0.37  |
 
 ##### 100 fold difference
 
+![loss_lr_100](https://user-images.githubusercontent.com/48655676/114625247-3c04ee80-9cb2-11eb-82d8-12cbdca5b234.png)
+
 ![grid_lr](https://user-images.githubusercontent.com/48655676/114613782-12dd6180-9ca4-11eb-8a3e-f35b1bcc28cc.png)
 
-### DCGAN
+Measure | Value | 
+:------: | :------:|
+PSNR   | 12.03     | 
+SSIM   |  0.25     | 
+MS-GMSD |  0.26    |  
+MDSI   |   0.48    |
+HaarPSI |   0.38  |
+
+Since we changed the behaviour of the coupled optimitzation by changing the learning rate we trained for an extra 100 epochs. The results pointed a need for longer training when having different values for this parameter.
+
+![grid_lr_100_2](https://user-images.githubusercontent.com/48655676/114626920-acad0a80-9cb4-11eb-9f9b-7d831bd0dfce.png)
+
+Measure | Value | 
+:------: | :------:|
+PSNR   |  12.21     | 
+SSIM   |  0.21     | 
+MS-GMSD |  0.26    |  
+MDSI   |   0.49    |
+HaarPSI |   0.41  |
+
+
+### DCGAN Final Results - All Parameters (64x64)
 
 ![skin_lesions_700_twick](https://user-images.githubusercontent.com/48655676/110391353-a1d4d980-8067-11eb-9eca-4f458fffd203.png)
 
-### SNGAN
+### SNGAN Final Results - All Parameters (64x64)
 
 ![skin_lesions_800_twick3_sn](https://user-images.githubusercontent.com/48655676/110391188-70f4a480-8067-11eb-9d8b-ce150ef7797b.png)
 
@@ -273,9 +309,25 @@ As mentioned above, the final goal of the image generation was to create images 
 
 We implemented a modified architecture which was able to generate such images, of size 128x128. Below we display the results of the generation and the metrics obtained.
 
-Since generation of such images proved to be a hard task, we had not only to apply all the parametrization described before but also to train for 500 epochs. With such training we even achieved better scores that with the training set for the 64x64 size images. This training was the one used to feed the classfier.
+Since generation of such images proved to be a hard task, we had not only to apply all the parametrization described before but also to train for 500 epochs (which was also due to difference in learning rates). With such training we even achieved better scores that with the training set for the 64x64 size images. This training was the one used to feed the classfier.
 
 ![128_grid](https://user-images.githubusercontent.com/48655676/114580522-3510b880-9c7f-11eb-95d9-d623078d3c35.png)
+
+# Trained generators
+
+Find attached the trained generators for most of the above experiments:
+
+* :inbox_tray: ![netG_batch_128](https://drive.google.com/file/d/17NqrT-xGMskLO1kHiRUQjoU3w2Nu5O5-/view?usp=sharing)
+* :inbox_tray: ![netG_batch_64](https://drive.google.com/file/d/1Ngr56Rww9JINEMtPbmTiZJfjOmJuvG4n/view?usp=sharing)
+* :inbox_tray: ![netG_batch_16](https://drive.google.com/file/d/1X4d1048CGUm8uRmye0cH4SykNIaBqM2H/view?usp=sharing)
+* :inbox_tray: ![netG_batch_16_latent_128](https://drive.google.com/file/d/1IUVS2iP8RgHyjTX1AEgzGwggLFI48wVN/view?usp=sharing)
+* :inbox_tray: ![netG_batch_16_latent_256](https://drive.google.com/file/d/1jd6V3ljCCwDBiu7DgPrLQ8yrjzkSvVI7/view?usp=sharing)
+* :inbox_tray: ![netG_batch_spectral_norm]()
+* :inbox_tray: ![netG_batch_16_latent_256_lr_100](https://drive.google.com/file/d/1qY_b_NBhPlPgvZOXtOva8ikfzQshE76b/view?usp=sharing)
+* :inbox_tray: ![netG_final_SNGAN]()
+
+
+
 
 
 
