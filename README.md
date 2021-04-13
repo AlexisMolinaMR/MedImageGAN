@@ -257,20 +257,25 @@ Having different learning rates for the _Generator_ and the _Discriminator_ help
 
 ##### 100 fold difference
 
-
-
-
-### 128x128 image generation
-
-
+![grid_lr](https://user-images.githubusercontent.com/48655676/114613782-12dd6180-9ca4-11eb-8a3e-f35b1bcc28cc.png)
 
 ### DCGAN
 
 ![skin_lesions_700_twick](https://user-images.githubusercontent.com/48655676/110391353-a1d4d980-8067-11eb-9eca-4f458fffd203.png)
 
-
 ### SNGAN
 
 ![skin_lesions_800_twick3_sn](https://user-images.githubusercontent.com/48655676/110391188-70f4a480-8067-11eb-9d8b-ce150ef7797b.png)
+
+### 128x128 image generation - SNGAN
+
+As mentioned above, the final goal of the image generation was to create images that would fall into the class malign, i.e. a melanoma, so that later a classifier built upon an EfficientNet could enchance its performance by working on a much more balanced dataset. For that purpose we needed to create images of bigger size that the one that the SNGAN is designed to create (64x64). 
+
+We implemented a modified architecture which was able to generate such images, of size 128x128. Below we display the results of the generation and the metrics obtained.
+
+Since generation of such images proved to be a hard task, we had not only to apply all the parametrization described before but also to train for 500 epochs. With such training we even achieved better scores that with the training set for the 64x64 size images. This training was the one used to feed the classfier.
+
+![128_grid](https://user-images.githubusercontent.com/48655676/114580522-3510b880-9c7f-11eb-95d9-d623078d3c35.png)
+
 
 
