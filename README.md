@@ -311,7 +311,9 @@ We implemented a modified architecture which was able to generate such images, o
 
 Since generation of such images proved to be a hard task, we had not only to apply all the parametrization described before but also to train for 500 epochs (which was also due to difference in learning rates). With such training we even achieved better scores that with the training set for the 64x64 size images. This training was the one used to feed the classfier.
 
-![128_grid](https://user-images.githubusercontent.com/48655676/114580522-3510b880-9c7f-11eb-95d9-d623078d3c35.png)
+
+![SN_final](https://user-images.githubusercontent.com/48655676/114686469-18be5b80-9d13-11eb-80ae-aa53aa7061e6.png)
+
 
 Measure | Value | 
 :------: | :------:|
