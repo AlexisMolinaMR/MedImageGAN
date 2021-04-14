@@ -317,14 +317,14 @@ Since generation of such images proved to be a hard task, we had not only to app
 
 Find attached the trained generators for most of the above experiments:
 
-* :inbox_tray: ![netG_batch_128](https://drive.google.com/file/d/17NqrT-xGMskLO1kHiRUQjoU3w2Nu5O5-/view?usp=sharing)
-* :inbox_tray: ![netG_batch_64](https://drive.google.com/file/d/1Ngr56Rww9JINEMtPbmTiZJfjOmJuvG4n/view?usp=sharing)
-* :inbox_tray: ![netG_batch_16](https://drive.google.com/file/d/1X4d1048CGUm8uRmye0cH4SykNIaBqM2H/view?usp=sharing)
-* :inbox_tray: ![netG_batch_16_latent_128](https://drive.google.com/file/d/1IUVS2iP8RgHyjTX1AEgzGwggLFI48wVN/view?usp=sharing)
-* :inbox_tray: ![netG_batch_16_latent_256](https://drive.google.com/file/d/1jd6V3ljCCwDBiu7DgPrLQ8yrjzkSvVI7/view?usp=sharing)
-* :inbox_tray: ![netG_batch_spectral_norm]()
-* :inbox_tray: ![netG_batch_16_latent_256_lr_100](https://drive.google.com/file/d/1qY_b_NBhPlPgvZOXtOva8ikfzQshE76b/view?usp=sharing)
-* :inbox_tray: ![netG_final_SNGAN]()
+* :inbox_tray: ![netG_batch_128.zip](https://drive.google.com/file/d/17NqrT-xGMskLO1kHiRUQjoU3w2Nu5O5-/view?usp=sharing)
+* :inbox_tray: ![netG_batch_64.zip](https://drive.google.com/file/d/1Ngr56Rww9JINEMtPbmTiZJfjOmJuvG4n/view?usp=sharing)
+* :inbox_tray: ![netG_batch_16.zip](https://drive.google.com/file/d/1X4d1048CGUm8uRmye0cH4SykNIaBqM2H/view?usp=sharing)
+* :inbox_tray: ![netG_batch_16_latent_128.zip](https://drive.google.com/file/d/1IUVS2iP8RgHyjTX1AEgzGwggLFI48wVN/view?usp=sharing)
+* :inbox_tray: ![netG_batch_16_latent_256.zip](https://drive.google.com/file/d/1jd6V3ljCCwDBiu7DgPrLQ8yrjzkSvVI7/view?usp=sharing)
+* :inbox_tray: ![netG_batch_spectral_norm.zip]()
+* :inbox_tray: ![netG_batch_16_latent_256_lr_100.zip](https://drive.google.com/file/d/1qY_b_NBhPlPgvZOXtOva8ikfzQshE76b/view?usp=sharing)
+* :inbox_tray: ![netG_final_SNGAN.zip]()
 
 
 
