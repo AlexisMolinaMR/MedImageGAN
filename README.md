@@ -313,6 +313,14 @@ Since generation of such images proved to be a hard task, we had not only to app
 
 ![128_grid](https://user-images.githubusercontent.com/48655676/114580522-3510b880-9c7f-11eb-95d9-d623078d3c35.png)
 
+Measure | Value | 
+:------: | :------:|
+PSNR   |  12.18     | 
+SSIM   |  0.24    | 
+MS-GMSD | 0.15    |  
+MDSI   |   0.52    |
+HaarPSI |   0.45  |
+
 ## Trained generators
 
 Find attached the trained generators for most of the above experiments:
@@ -324,7 +332,7 @@ Find attached the trained generators for most of the above experiments:
 * :inbox_tray: [netG_batch_16_latent_256.zip](https://drive.google.com/file/d/1jd6V3ljCCwDBiu7DgPrLQ8yrjzkSvVI7/view?usp=sharing)
 * :inbox_tray: [netG_batch_spectral_norm.zip](https://drive.google.com/file/d/121sQfX_CG0RoDwHYcCoqzNxE9AOfnZ15/view?usp=sharing)
 * :inbox_tray: [netG_batch_16_latent_256_lr_100.zip](https://drive.google.com/file/d/1qY_b_NBhPlPgvZOXtOva8ikfzQshE76b/view?usp=sharing)
-* :inbox_tray: [netG_final_SNGAN.zip]()
+* :inbox_tray: [netG_final_SNGAN.zip](https://drive.google.com/file/d/1doxpRxHdJsktKXTyamBGqI-o0q_av8Kk/view?usp=sharing)
 
 ### Execution
 
