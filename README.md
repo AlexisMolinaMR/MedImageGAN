@@ -313,7 +313,7 @@ Since generation of such images proved to be a hard task, we had not only to app
 
 ![128_grid](https://user-images.githubusercontent.com/48655676/114580522-3510b880-9c7f-11eb-95d9-d623078d3c35.png)
 
-# Trained generators
+## Trained generators
 
 Find attached the trained generators for most of the above experiments:
 
@@ -326,9 +326,9 @@ Find attached the trained generators for most of the above experiments:
 * :inbox_tray: [netG_batch_16_latent_256_lr_100.zip](https://drive.google.com/file/d/1qY_b_NBhPlPgvZOXtOva8ikfzQshE76b/view?usp=sharing)
 * :inbox_tray: [netG_final_SNGAN.zip]()
 
-## Execution
+### Execution
 
-# Control files
+## Control files
 
 For reproducibility of all the experimental design portrayed in this work we also make available the control files used for obtaining the results.
 
