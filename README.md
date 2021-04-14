@@ -102,8 +102,6 @@ The International Skin Imaging Collaboration: Melanoma Project is an academia an
 
 Training GANs is a hard task. From the strarting point of the raw implementation of the architecture util the generation of good quality images, that fullfil the purpose of the project, several add-ons have been implemented. For each one of them, we have compiled the obtained results and also elaborated on the given effect upon the network.
 
-#### Non-convergence issue
-
 #### Minumum input size
 
 Training GANs is costly in terms of computing resources, and with a limited amount of those, experimenting with different features of GANs proves to be a time consuming issue. In that sense, we wanted to assess the minimum input size of images that allowed for a proper training of the DCGAN.
