@@ -338,6 +338,16 @@ Find attached the trained generators for most of the above experiments:
 
 ### Execution
 
+If you want to generate images with the above models pass the control file described below to the main script.
+
+```
+arch: 'Generator'
+
+path: '/home/name/path/to/geenerator_model/'
+out: '/home/name/path/to/output/images'
+quantity: 100
+```
+
 ## Control files
 
 For reproducibility of all the experimental design portrayed in this work we also make available the control files used for obtaining the results.
