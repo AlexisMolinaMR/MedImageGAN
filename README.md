@@ -248,7 +248,7 @@ HaarPSI |   0.40  |
 
 #### Learning rate adjustment
 
-Having different learning rates for the _Generator_ and the _Discriminator_ helps the training. For instance, we left the learning rate of the _Generator_ as indicated on the DCGAN paper and inreased 10 and 100 fold the learning rate of the _Discriminator.
+Having different learning rates for the _Generator_ and the _Discriminator_ helps the training. For instance, we left the learning rate of the _Generator_ as indicated on the DCGAN paper and inreased 10 and 100 fold the learning rate of the _Discriminator_.
 
 At first glance the performance did not improve much but we got a more stable training.
 
