@@ -350,13 +350,8 @@ quantity: 100
 
 For reproducibility of all the experimental design portrayed in this work we also make available the control files used for obtaining the results.
 
-* :inbox_tray: 
-* :inbox_tray:
-* :inbox_tray:
-* :inbox_tray:
-* :inbox_tray:
-* :inbox_tray:
-* :inbox_tray:
-
-
-
+* :inbox_tray: [batch_size.yaml](https://drive.google.com/file/d/1sOGW6DrXBmVoRpAwE5WJ3mPV_LZnGQw_/view?usp=sharing)
+* :inbox_tray: [training_epochs.yaml](https://drive.google.com/file/d/1lsmNMrugNVJIIzQLNiKAyUMLyfFTY007/view?usp=sharing)
+* :inbox_tray: [latent_size.yaml](https://drive.google.com/file/d/13rEYa6g84qVUkjYEf3IkKmZxpSGxzqrh/view?usp=sharing)
+* :inbox_tray: [spectral_norm.yaml](https://drive.google.com/file/d/1jUKpP3ITygsx6EOWx708gxQiCwsf-rJ3/view?usp=sharing)
+* :inbox_tray: [sngan_128_size.yaml](https://drive.google.com/file/d/1XTvw141LWNSHxk9tfHnWdxHEzztSJbSs/view?usp=sharing)
