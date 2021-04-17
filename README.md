@@ -341,10 +341,18 @@ If you want to generate images with the above models pass the control file descr
 ```
 arch: 'Generator'
 
-path: '/home/name/path/to/geenerator_model/'
-out: '/home/name/path/to/output/images'
+path: '/home/name/path/to/generator_model/model.zip
+out: '/home/name/path/to/output/images/
+run: 'dummy_gen'
+
+n_gpu: 1
+
 quantity: 100
+
+image_size: 64
 ```
+
+_Note that the generative models provided above have been generated in a GPU, thus, any further usage for image generation will require a GPU device._
 
 ## Control files
 
