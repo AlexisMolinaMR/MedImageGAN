@@ -102,8 +102,6 @@ The International Skin Imaging Collaboration: Melanoma Project is an academia an
 
 Training GANs is a hard task. From the strarting point of the raw implementation of the architecture util the generation of good quality images, that fullfil the purpose of the project, several add-ons have been implemented. For each one of them, we have compiled the obtained results and also elaborated on the given effect upon the network.
 
-#### Non-convergence issue
-
 #### Minumum input size
 
 Training GANs is costly in terms of computing resources, and with a limited amount of those, experimenting with different features of GANs proves to be a time consuming issue. In that sense, we wanted to assess the minimum input size of images that allowed for a proper training of the DCGAN.
@@ -250,7 +248,7 @@ HaarPSI |   0.40  |
 
 #### Learning rate adjustment
 
-Having different learning rates for the _Generator_ and the _Discriminator_ helps the training. For instance, we left the learning rate of the _Generator_ as indicated on the DCGAN paper and inreased 10 and 100 fold the learning rate of the _Discriminator.
+Having different learning rates for the _Generator_ and the _Discriminator_ helps the training. For instance, we left the learning rate of the _Generator_ as indicated on the DCGAN paper and inreased 10 and 100 fold the learning rate of the _Discriminator_.
 
 At first glance the performance did not improve much but we got a more stable training.
 
@@ -343,22 +341,25 @@ If you want to generate images with the above models pass the control file descr
 ```
 arch: 'Generator'
 
-path: '/home/name/path/to/geenerator_model/'
-out: '/home/name/path/to/output/images'
+path: '/home/name/path/to/generator_model/model.zip
+out: '/home/name/path/to/output/images/
+run: 'dummy_gen'
+
+n_gpu: 1
+
 quantity: 100
+
+image_size: 64
 ```
+
+_Note that the generative models provided above have been generated in a GPU, thus, any further usage for image generation will require a GPU device._
 
 ## Control files
 
 For reproducibility of all the experimental design portrayed in this work we also make available the control files used for obtaining the results.
 
-* :inbox_tray: 
-* :inbox_tray:
-* :inbox_tray:
-* :inbox_tray:
-* :inbox_tray:
-* :inbox_tray:
-* :inbox_tray:
-
-
-
+* :inbox_tray: [batch_size.yaml](https://drive.google.com/file/d/1sOGW6DrXBmVoRpAwE5WJ3mPV_LZnGQw_/view?usp=sharing)
+* :inbox_tray: [training_epochs.yaml](https://drive.google.com/file/d/1lsmNMrugNVJIIzQLNiKAyUMLyfFTY007/view?usp=sharing)
+* :inbox_tray: [latent_size.yaml](https://drive.google.com/file/d/13rEYa6g84qVUkjYEf3IkKmZxpSGxzqrh/view?usp=sharing)
+* :inbox_tray: [spectral_norm.yaml](https://drive.google.com/file/d/1jUKpP3ITygsx6EOWx708gxQiCwsf-rJ3/view?usp=sharing)
+* :inbox_tray: [sngan_128_size.yaml](https://drive.google.com/file/d/1XTvw141LWNSHxk9tfHnWdxHEzztSJbSs/view?usp=sharing)
