@@ -1,0 +1,13 @@
+# input yaml for dcgan
+
+arch: 'Generator'
+
+path: '/home/alexis/Desktop/netG_128x128'
+out: '/home/alexis/Documents/AIDL/project/medical_imaging/images/fakes/'
+run: 'dummy_gen'
+
+n_gpu: 1
+
+quantity: 100
+
+image_size: 128

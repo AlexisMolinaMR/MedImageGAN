@@ -5,7 +5,7 @@ import numpy as np
 import torchvision.utils as vutils
 
 
-def to_gpu():
+def to_gpu(ngpu):
 
     device = torch.device("cuda:0" if (torch.cuda.is_available() and ngpu > 0) else "cpu")
 
